@@ -1,0 +1,368 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title ES2015: The Good Parts
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      section
+        h1 ES2015: The Good Parts
+
+      section
+        h2 Part 1: The Good Parts
+
+      section
+        h1 Hello <code>const</code>
+
+      section
+        h2 no reassignment
+        pre
+          code.language-javascript.
+            const bob = 'bob';
+            bob = 'joe';
+            console.log(bob) //=> 'bob'
+
+      section
+        h2 Always initialized
+        pre
+          code.language-javascript.
+            const bob; // SyntaxError
+
+      section
+        h1 Hello <code>let</code>
+
+      section
+        h2 Reassignment is fine
+        h3 it's like <code>var</code>
+        pre
+          code.language-javascript.
+            let bob = 'bob'
+            bob = 'joe';
+            console.log(bob) //=> 'joe'
+
+      section
+        h2 Block scoping
+        h3 That's anything between <code>{}</code> - not just functions
+        pre
+          code.language-javascript.
+            var bob = 'bob'
+            if (1 === 1) {
+              bob = 'joe'
+              console.log(bob) // => 'joe'
+            }
+            console.log(bob) // => 'bob'
+
+      section
+        h2 Not like <code>var</code>
+        pre
+          code.language-javascript.
+            var bob = 'bob'
+            if (1 === 1) {
+              let bob = 'joe'
+              console.log(bob) // => 'joe'
+            }
+            console.log(bob) // => 'joe'
+            // curse you joe...
+
+      section
+        h2 What actually happens:
+        pre
+          code.language-javascript.
+            const bob = require('./bob');
+            const phil = require('./phil');
+            const gary = fs.readFileSync('./gary.txt');
+            const nao = new Date();
+            const myAwesomeString = 'my' + 'awesome' + 'string'
+            // const this const that const the other
+        h3 99% of the time...
+
+      section
+        img(src="/images/all-your-const.jpg")
+
+      section
+        h2 Dave Score
+        h1 4 out of 5
+        h3 love my consts...
+
+      section
+        h1 Hello <code>``</code>
+        p (backticks aka Template Strings)
+
+      section
+        h2 Interpolation
+        h3 (<em>so</em> Ruby)
+        pre
+          code.language-javascript.
+            const name = 'George Nathaniel Curzon'
+            const lineOne = `My name is ${name}`
+
+      section
+        h2 Multiline
+        pre
+          code.language-javascript.
+            const name = 'George Nathaniel Curzon';
+            const property = 'person';
+            const cheeks = 'pink';
+            const hairType = 'sleek';
+            const diningRegularity = 'twice a week';
+
+            const baliol = `My name is ${name}
+            I am a most superior ${property}.
+            My cheeks are ${cheekColour}, my hair is ${hairType},
+            I dine at Blenheim ${diningRegularity}.`;
+
+
+      section
+        h2 <code>\n</code>s get dropped in automatically
+        pre
+          code.language-javascript.
+            My name is George Nathaniel Curzon
+            I am a most superior person.
+            My cheeks are pink, my hair is sleek,
+            I dine at Blenheim twice a week.
+
+      section
+        h2 Dave Score
+        h1 2 out of 5
+        h3 nice to have - but not rocking my world
+
+      section
+        h1 Hello <code> => </code>
+        p (arrow functions)
+
+      section
+        img(src="/images/arrow2.jpg" height="400")
+
+      section
+        h2 So much WIN it hurts
+        ul
+          li no more <code>function</code> keyword
+          li optional brackets
+          li implicit return
+          li transparent `this` scope
+
+      section
+        h2 What does it look like
+        pre
+          code.language-javascript.
+            const f = () => "Imma returning!"
+            const ret = f()
+            console.log(ret) // "Imma returning!"
+
+      section
+        h2 Single parameter? No parens
+        pre
+          code.language-javascript.
+            const greeter = name => `Hello, ${name}`
+            const greeting = greeter("Bob")
+            console.log(greeting) // "Hello, Bob"
+
+      section
+        h2 What is <code>this</code>?
+        h3 See horrifying examples!
+
+      section
+        img(src="/images/live-coding.jpg" height="400")
+
+      section
+        h2 Dave Score
+        h1 5 out of 5
+        h3 Finally a syntax to be proud of... but watch the this
+
+      section
+        h1 Hello Promises
+
+      section
+        h2 What is a promise?
+        ul
+          li It's a way of handling asychronous code
+          li It's a functional pattern
+          li It's a type of monad... does that help?
+          li It looks sweeeet with arrow functions
+
+      section
+        img(src="/images/always-promise.jpg" height="400")
+
+      section
+        h2 Promise example
+        pre
+          code.language-javascript.
+            makeAsyncHTMLCall('gypsydave5.com')
+              .then(res => JSON.parse(res))
+              .then(object => object.message)
+              .then(console.log)
+              .catch(err => console.error(`it all went wrong: ${err}`))
+
+      section
+        img(src="/images/live-dangerously.jpg" height="400")
+
+      section
+        h2 Dave Score
+        h1 5 out of 5
+        h3 "It's just a monoid in the category of endofunctors, what's the problem?"
+
+      section
+        ul
+          li
+            h2 Q: Where can I get all this wonderful stuff?
+          li
+            h2 A: Everything so far is in Node RIGHT NAO
+
+      section
+        ul
+          li
+            h2 Q: But what about my browser?
+          li
+            h2 A: Ahhh...
+              a(href="http://kangax.github.io/compat-table/es6/" target="_blank") look at this?
+
+
+      section
+        h1 Hello Destructuring
+
+      section
+        pre
+          code.language-javascript.
+            let [a, b] = ["hello", "world"]
+            [a, b] = [b, a]
+
+      section
+        h2 Objects too...
+        pre
+          code.language-javascript.
+            const obj = {x: "bob", y: "wilma", z: "betty"}
+            const {x, y} = obj //x => "bob", y => "wilma"
+            const {x: bob, y: wilma} = obj // bob => "bob", wilma => "wilma"
+
+      section
+        h1 Hello Module System
+
+      section
+        h2 <code>oHaiDave.js</code>
+        pre
+          code.language-javascript.
+            export function hi () { return "O HAI" }
+            export const dave = "DAVE"
+
+      section
+        pre
+          code.language-javascript.
+            import * as messager from "./oHaiDave"
+            console.log(messager.hi()) // "O HAI"
+            console.log(messager.dave) // "DAVE"
+
+      section
+        h2 Destructuring at work
+        pre
+          code.language-javascript.
+            import {dave: name} from "./oHaiDave"
+            console.log(name) // "DAVE"
+
+      section
+        h1 Hello Generators
+
+      section
+        h2 What the f*** is a generator when it's at home?
+        h2 MOAR LIVE CODING!
+
+      section
+        h1 Hello
+          a(href="https://babeljs.io/" target="_blank")  Babel
+
+      section
+        img(src="/images/babel.png" height="400")
+
+      section
+        h2 Plays well with
+          a(href="https://webpack.github.io/" target="_blank")  Webpack
+          and
+          a(href="http://browserify.org/")  Browserify
+
+      section
+        img(src="/images/react.png" height="400")
+
+      section
+        h2 Part 2: The Bad Parts
+
+      section
+        h1 Hello Classes
+
+      section
+        pre
+          code.language-javascript.
+            class Dave extends Person {
+              constructor(name, age) {
+                super(name, age)
+                this.caffeine = 5
+              }
+
+              drinkCoffee() {
+                this.caffeine++
+              }
+            }
+
+      section
+        h2 Dave Score
+        h1 1.5 out of 5
+        h3 fine if you like that sort of thing
+
+      section
+        h1 Hello Symbols
+
+      section
+        pre
+          code.language-javascript.
+            const symbol = Symbol('dave')
+            const object {
+              [symbol]: "it's me"
+            }
+            let bob = symbol + 'stuff' // TypeError
+            let bet = symbol + 1 // TypeError
+
+      section
+        h2 Dave Score
+        h1 -2 out of 5
+        h3 you implement this but not tail call optimization???
+
+      section
+        h2 Part 3: The Ugly Parts
+
+      section
+        ul
+          li
+            h2 It doesn't stop
+          li
+            h3 ES2015...
+          li
+            h3 ES2016...
+          li
+            h3 ES2017...
+
+      section
+        h2 More changes are on the way
+        h2
+          a(href="https://github.com/tc39/ecma262" target="_blank") Proposed Changes
+
+      section
+        h2 But Babel has you covered
+        h2
+          a(href="https://babeljs.io/docs/plugins/" target="_blank") Plugins
+
+      section
+        h2 Beware! Sometimes these features can be... flakey...
+
+      section
+        h2 Ugly closing thought:
+        h2 JS is now compiling to JS
+        h3 We may as well do Go / Clojure / Whatever
+
+      section
+        img(src="/images/arrow.jpg" height="400")
+
+    script(src='build/build.js')

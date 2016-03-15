@@ -1,0 +1,7 @@
+{
+  "name": "presentation-es2016-the-good-parts",
+  "version": "0.0.0",
+  "dependencies": {
+    "prism": "gh-pages"
+  }
+}
